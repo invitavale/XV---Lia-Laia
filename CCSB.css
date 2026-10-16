@@ -2437,3 +2437,42 @@ html.intro-leaving .hero-section { }
 .msg-skip { right: auto !important; left: 50% !important; transform: translateX(-50%); bottom: calc(22px + env(safe-area-inset-bottom)) !important; z-index: 5; }
 .msg-title { font-size: clamp(1.75rem, 7.4vw, 2.8rem) !important; letter-spacing: 0.02em !important; white-space: nowrap; }
 .msg-crown { width: 120px !important; filter: drop-shadow(0 4px 10px rgba(169,95,115,0.25)); }
+
+/* Versión sin cuenta: regalos solo con ícono y mensaje */
+.gift-presence {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.12rem !important;
+    line-height: 1.7;
+    margin-bottom: 1.6rem !important;
+}
+.gifts-container .gift-icon { margin-bottom: 0.5rem !important; }
+
+/* Sugerencias de regalo */
+.gift-stores {
+    list-style: none;
+    margin: 1.2rem auto 0.6rem;
+    padding: 0;
+    max-width: 280px;
+}
+.gift-stores li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.55rem;
+    border: 1px solid rgba(201,164,92,0.55);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.08rem;
+    letter-spacing: 0.03em;
+}
+.gift-stores li::before {
+    content: "✦";
+    color: #E9CF8C;
+    font-size: 0.8rem;
+}
+.gifts-container .btn-wedding { margin-top: 1.4rem !important; }
