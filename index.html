@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lía Daniela &amp; Laia Daniela · Nuestros XV Años</title>
+    <meta name="description" content="Te invitamos a celebrar los XV años de Lía Daniela y Laia Daniela · Viernes 20 de noviembre de 2026 · Hotel W&amp;P Santo Domingo">
+    <meta property="og:title" content="Lía Daniela &amp; Laia Daniela · Nuestros XV Años">
+    <meta property="og:description" content="Viernes 20 de noviembre de 2026 · 6:30 p.m. · Hotel W&amp;P Santo Domingo">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="intro-poster.jpg?v=2">
+    <link rel="stylesheet" href="CCSB.css">
+        <style>
+        /* Carrusel: 3 imágenes simultáneamente con foto central destacada */
+        .carousel-track-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+            overflow: visible;
+        }
+        .carousel-item {
+            flex: 0 0 33.333%; /* 3 imágenes por fila en PC */
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0; /* usamos gap del track para separación */
+        }
+        .carousel-item img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 0;
+            box-shadow: 0 10px 24px rgba(169,95,115,0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        /* Marco tipo polaroid ajustado al tamaño real de cada foto:
+           delgado en los tres lados y un poco más grueso en la base. */
+        .framed-photo {
+            width: auto !important;
+            height: auto !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            box-sizing: border-box !important;
+            margin: 0 auto;
+            object-fit: contain !important;
+            background: #A95F73 !important;
+            border: 6px solid #A95F73 !important;
+            border-bottom-width: 20px !important;
+        }
+
+        @media (min-width: 769px) {
+            .carousel-item.is-center .framed-photo {
+                transform: scale(1.12) rotate(-0.2deg);
+                box-shadow: 0 34px 68px rgba(201,168,93,0.45);
+            }
+        }
+        
+        /* Mobile: una imagen centrada */
+        @media (max-width: 768px) {
+            .carousel-item {
+                flex: 0 0 100% !important; /* 1 imagen por vista en móvil */
+                padding: 0 6px !important;
+                height: 380px !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            .carousel-item img {
+                width: auto !important;
+                height: auto !important;
+                max-width: 100% !important;
+                max-height: 380px !important;
+                object-fit: contain !important;
+                transform: none !important;
+            }
+            .framed-photo {
+                border-width: 4px !important;
+                border-bottom-width: 14px !important;
+            }
+            
+            .carousel-track-container {
+                height: auto !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .carousel-item img {
+                width: auto !important;
+                height: auto !important;
+                max-width: 100% !important;
+                max-height: 320px !important;
+                object-fit: contain !important;
+                border-radius: 0;
+                transform: none !important;
+            }
+            .framed-photo {
+                border-width: 3px !important;
+                border-bottom-width: 10px !important;
+            }
+            
+            .carousel-item {
+                flex: 0 0 100% !important;
+                padding: 0 8px !important;
+                height: 320px !important;
+            }
+            
+            .carousel-track-container {
+                height: auto !important;
+            }
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 2;
+            padding: 0 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-center">
+        <!-- Entrada con video: el toque inicia el video y la música (requisito de Safari/iOS) -->
+        <div id="introGate" class="intro-gate" role="button" tabindex="0" aria-label="Toca para abrir la invitación">
+            <img class="intro-bg" src="intro-poster.jpg?v=2" alt="" aria-hidden="true">
+            <video id="introVideo" class="intro-video" src="intro.mp4?v=2" poster="intro-poster.jpg?v=2" playsinline webkit-playsinline preload="auto"></video>
+            <div class="intro-shade" aria-hidden="true"></div>
+            <div class="intro-tap" id="introTap">
+                <p class="intro-kicker">Nuestros XV Años</p>
+                <p class="intro-names"><span class="n">Lía Daniela</span><span class="amp">&amp;</span><span class="n">Laia Daniela</span></p>
+                <div class="intro-ring" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" width="34" height="34" fill="none"><path d="M24 9v6M24 33v6M9 24h6M33 24h6M13.4 13.4l4.2 4.2M30.4 30.4l4.2 4.2M13.4 34.6l4.2-4.2M30.4 17.6l4.2-4.2" stroke="#FFF6DE" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="4" fill="#FFF6DE"/></svg>
+                </div>
+                <p class="intro-cta">Toca para abrir tu invitación</p>
+                <p class="intro-note">Con música ♪</p>
+            </div>
+            <button type="button" class="intro-skip" id="introSkip">Saltar ›</button>
+            <div class="intro-flash" aria-hidden="true"></div>
+            <div class="intro-bf-glow" aria-hidden="true"><div class="intro-bf-shape"></div></div>
+        </div>
+
+        <!-- Mensaje de las quinceañeras (aparece palabra por palabra después del video) -->
+        <div id="introMessage" class="intro-message" aria-live="polite">
+            <img class="msg-flower msg-flower-tl" src="flor-esquina.png" alt="" aria-hidden="true">
+            <img class="msg-flower msg-flower-br" src="flor-esquina.png" alt="" aria-hidden="true">
+            <img class="msg-bf msg-bf-1" src="mariposa.webp" alt="" aria-hidden="true">
+            <img class="msg-bf msg-bf-2" src="mariposa.webp" alt="" aria-hidden="true">
+            <div class="msg-inner">
+                <img class="msg-crown" src="icono-corona.png" alt="Tiara">
+                <h2 class="msg-title" data-reveal="title">Nuestros 15 Años</h2>
+                <p class="msg-text" data-reveal="text">Con la bendición de Dios y el amor de toda nuestra familia, nos sentimos muy felices de llegar a este momento de nuestras vidas.</p>
+                <p class="msg-text" data-reveal="text">Ahora empieza un camino que conduce a un mundo de sueños e ilusiones, que con mucha fe, humildad y esperanza deseamos cumplir.</p>
+                <p class="msg-sign" data-reveal="sign">Lía Daniela &amp; Laia Daniela</p>
+            </div>
+            <button type="button" class="intro-skip msg-skip" id="msgSkip">Continuar ›</button>
+        </div>
+
+        <!-- Reproductor de música -->
+        <div id="musicPlayer" class="music-player" style="display: none;">
+            <button id="musicToggle" class="music-button modern-icon" title="Reproducir/Pausar música">
+                <svg id="volumeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="#A95F73" stroke="#fff" stroke-width="1"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.08" stroke="#A95F73" stroke-width="2"></path>
+                    <circle cx="6.5" cy="12" r="1" fill="#D98FA3"/>
+                </svg>
+            </button>
+            <audio id="bgMusic" src="musica.mp3" preload="auto" loop playsinline></audio>
+        </div>
+
+        <!-- Hero Section: portada con los nombres -->
+        <div class="hero-section hero-names-cover">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <div class="hero-frame" aria-hidden="true"></div>
+            <img class="hero-flower hero-flower-tl" src="flor-esquina.png" alt="" aria-hidden="true">
+            <img class="hero-flower hero-flower-br" src="flor-esquina.png" alt="" aria-hidden="true">
+            <img class="hero-bf hero-bf-1" src="mariposa.webp" alt="" aria-hidden="true">
+            <img class="hero-bf hero-bf-2" src="mariposa.webp" alt="" aria-hidden="true">
+            <img class="hero-bf hero-bf-3" src="mariposa.webp" alt="" aria-hidden="true">
+            <div class="hero-content">
+                <div class="hero-text cover-text">
+                    <img class="cover-crown" src="icono-corona.png" alt="">
+                    <p class="cover-kicker">Nuestros XV Años</p>
+                    <h1 class="cover-names">
+                        <span class="n">Lía Daniela</span>
+                        <span class="cover-amp">&amp;</span>
+                        <span class="n">Laia Daniela</span>
+                    </h1>
+                    <div class="cover-date"><span>Viernes</span><strong>20 · 11 · 2026</strong><span>6:30 p.m.</span></div>
+                    <div class="scroll-indicator">
+                        <div class="scroll-mouse">
+                            <div class="scroll-wheel"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+        <!-- Countdown -->
+        <section class="countdown-section">
+            <div class="gold-card gc-narrow gc-small">
+<img class="corner corner-tl" src="flor-esquina.png" alt="" aria-hidden="true"><img class="corner corner-br" src="flor-esquina.png" alt="" aria-hidden="true"><img class="butterfly bf-1 bf-a" src="mariposa.webp" alt="" aria-hidden="true"><img class="butterfly bf-2 bf-a" src="mariposa.webp" alt="" aria-hidden="true">
+            <h2 class="section-title">Faltan</h2>
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">DÍAS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">HORAS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">MINUTOS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">SEGUNDOS</div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Fecha y Lugar -->
+        <section class="events-section">
+            <div class="events-container events-container-single">
+                <div class="event-card gold-card gc-narrow">
+<img class="corner corner-tl" src="flor-esquina.png" alt="" aria-hidden="true"><img class="corner corner-br" src="flor-esquina.png" alt="" aria-hidden="true"><img class="butterfly bf-1 bf-b" src="mariposa.webp" alt="" aria-hidden="true"><img class="butterfly bf-2 bf-b" src="mariposa.webp" alt="" aria-hidden="true">
+
+                    <div class="event-icon modern-icon">
+                        <img src="icono-corona.png" alt="Corona" class="icon-img">
+                    </div>
+                    <h3 class="event-title">Fiesta de XV Años</h3>
+                    <div class="event-details">
+                        <h4>Día</h4>
+                        <p>Viernes 20 de noviembre de 2026</p>
+                    </div>
+                    <div class="event-details">
+                        <h4>Hora</h4>
+                        <p class="event-time">6:30 p.m.</p>
+                        <p class="punctuality-badge">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                            La puntualidad es muy importante
+                        </p>
+                    </div>
+                    <div class="event-details">
+                        <h4>Lugar</h4>
+                        <p>Hotel W&amp;P Santo Domingo</p>
+                        <p class="event-address">Av. Sarasota #53, Bella Vista, Santo Domingo</p>
+                    </div>
+                    <button class="btn-wedding" onclick="openLocation('reception')">¿Cómo llegar?</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Party Information -->
+        <section class="party-section">
+            <div class="party-container">
+                <h2 class="section-title">Detalles</h2>
+                <p class="section-subtitle">Hagamos juntos una noche inolvidable. Aquí algunos detalles a tener en cuenta.</p>
+
+                <div class="party-grid">
+                    <div class="party-card gold-card gc-item">
+                        <img class="corner corner-tl corner-sm" src="flor-esquina.png" alt="" aria-hidden="true">
+                        <div class="party-icon modern-icon bowtie-icon">
+                            <img src="icono-vestimenta.png" alt="Vestido y traje" class="icon-img">
+                        </div>
+                        <h3>Código de Vestimenta</h3>
+                        <button class="btn-wedding" onclick="showDressCode()">Ver más</button>
+                    </div>
+
+                    <div class="party-card gold-card gc-item">
+                        <img class="corner corner-br corner-sm" src="flor-esquina.png" alt="" aria-hidden="true">
+                        <div class="party-icon modern-icon">
+                            <svg width="70" height="70" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="6" y="18" width="52" height="36" rx="6" fill="#A95F73"/>
+                                <rect x="24" y="10" width="16" height="10" rx="2" fill="#A95F73"/>
+                                <circle cx="32" cy="36" r="11" fill="#FFF9F2"/>
+                                <circle cx="32" cy="36" r="6" fill="#A95F73"/>
+                                <circle cx="48" cy="26" r="2.5" fill="#FFF9F2"/>
+                            </svg>
+                        </div>
+                        <h3>Comparte tus Fotos</h3>
+                        <p>Ayúdanos a capturar cada momento, sube las fotos que tomes durante la fiesta.</p>
+                        <button class="btn-wedding" onclick="sharePhotos()">Subir Fotos</button>
+                    </div>
+                    <div class="party-card gold-card gc-item">
+                        <img class="corner corner-tl corner-sm" src="flor-esquina.png" alt="" aria-hidden="true">
+                        <div class="party-icon modern-icon no-kids-icon">
+                            <svg width="88" height="88" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="32" cy="32" r="29" fill="#FFFBF6" stroke="#D9BC7E" stroke-width="2.6"/>
+                                <circle cx="32" cy="32" r="25.5" fill="none" stroke="#F1DFC0" stroke-width="1"/>
+                                <!-- niña -->
+                                <circle cx="24" cy="21" r="4.3" fill="#C27B90"/>
+                                <circle cx="19.6" cy="19.4" r="1.9" fill="#C27B90"/>
+                                <circle cx="28.4" cy="19.4" r="1.9" fill="#C27B90"/>
+                                <path d="M24 26.4c-2.2 0-3.4 1.2-3.8 3l-3.2 10.4h4.3V46c0 1.1 2.3 1.1 2.3 0v-6.2h.8V46c0 1.1 2.3 1.1 2.3 0v-6.2h4.3l-3.2-10.4c-.4-1.8-1.6-3-3.8-3z" fill="#C27B90"/>
+                                <!-- niño -->
+                                <circle cx="40.5" cy="22" r="4.1" fill="#A95F73"/>
+                                <path d="M40.5 27.2c-2.6 0-4.2 1.3-4.2 3.6v8.4h1.9V46c0 1.1 2.1 1.1 2.1 0v-6.2h.4V46c0 1.1 2.1 1.1 2.1 0v-6.8h1.9v-8.4c0-2.3-1.6-3.6-4.2-3.6z" fill="#A95F73"/>
+                                <!-- manos tomadas -->
+                                <path d="M28.6 31.5c2.4 1.6 4.6 1.6 7.7.6" fill="none" stroke="#B66D82" stroke-width="1.8" stroke-linecap="round"/>
+                                <path d="M14.2 14.2l35.6 35.6" fill="none" stroke="#D2AD62" stroke-width="3.2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Celebración Solo para Adultos</h3>
+                        <p>Amamos a los pequeños de la casa, pero esta noche especial está pensada únicamente para adultos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gifts -->
+        <section class="gifts-section">
+            <div class="gifts-container gold-card gc-narrow">
+<img class="corner corner-tl" src="flor-esquina.png" alt="" aria-hidden="true"><img class="corner corner-br" src="flor-esquina.png" alt="" aria-hidden="true"><img class="butterfly bf-1 bf-a" src="mariposa.webp" alt="" aria-hidden="true"><img class="butterfly bf-2 bf-a" src="mariposa.webp" alt="" aria-hidden="true">
+
+                <h2 class="section-title">Regalos</h2>
+                <p class="section-subtitle">Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotras, aquí te dejamos los datos.</p>
+
+                <div class="gift-icon modern-icon">
+                    <img src="icono-regalo.png" alt="Regalo" class="icon-img">
+                </div>
+
+                <button class="btn-wedding" onclick="showGifts()">Ver datos</button>
+            </div>
+        </section>
+
+        <!-- RSVP -->
+        <section class="rsvp-section">
+            <div class="rsvp-container gold-card gc-narrow">
+<img class="corner corner-tl" src="flor-esquina.png" alt="" aria-hidden="true"><img class="corner corner-br" src="flor-esquina.png" alt="" aria-hidden="true"><img class="butterfly bf-1 bf-b" src="mariposa.webp" alt="" aria-hidden="true"><img class="butterfly bf-2 bf-b" src="mariposa.webp" alt="" aria-hidden="true">
+
+                <h2 class="section-title">Confirma tu Asistencia</h2>
+
+                <div class="whatsapp-icon modern-icon">
+                    <svg width="84" height="84" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M24 5C13.5 5 5 13.4 5 23.8c0 3.5 1 6.8 2.7 9.6L5 43l9.9-2.6c2.7 1.5 5.8 2.3 9.1 2.3 10.5 0 19-8.4 19-18.8S34.5 5 24 5z" fill="#A95F73" stroke="#D98FA3" stroke-width="2"/>
+                        <path d="M18.3 15.4c-.4-.9-.8-.9-1.2-.9h-1c-.4 0-.9.1-1.4.7-.5.5-1.8 1.7-1.8 4.2s1.8 4.9 2.1 5.2c.3.3 3.5 5.6 8.6 7.6 4.3 1.7 5.1 1.4 6.1 1.3.9-.1 3-1.2 3.4-2.4.4-1.2.4-2.2.3-2.4-.1-.2-.5-.3-1-.6s-3-1.5-3.4-1.6c-.5-.2-.8-.3-1.1.2-.3.5-1.3 1.6-1.6 2-.3.3-.6.4-1.1.1-.5-.3-2.1-.8-4-2.5-1.5-1.3-2.5-2.9-2.8-3.4-.3-.5 0-.8.2-1 .2-.2.5-.6.8-.9.2-.3.3-.5.5-.9.2-.3.1-.7 0-.9-.1-.3-1.1-2.7-1.5-3.8z" fill="#FFF9F2"/>
+                    </svg>
+                </div>
+
+                <button class="btn-wedding" onclick="confirmAttendance()">Confirmar por WhatsApp</button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content gold-card gc-narrow gc-small">
+<img class="corner corner-tl" src="flor-esquina.png" alt="" aria-hidden="true"><img class="corner corner-br" src="flor-esquina.png" alt="" aria-hidden="true"><img class="butterfly bf-1 bf-a" src="mariposa.webp" alt="" aria-hidden="true"><img class="butterfly bf-2 bf-a" src="mariposa.webp" alt="" aria-hidden="true">
+
+                <p>Con cariño,</p>
+                <h3><span class="n">Lía Daniela</span> &amp; <span class="n">Laia Daniela</span></h3>
+                <p class="footer-date">20 de noviembre, 2026</p>
+            </div>
+        </footer>
+        </div>
+
+        <!-- Modal Dress Code -->
+        <div id="dresscodeModal" class="modal-overlay" onclick="closeDressCodeModal(event)">
+            <div class="dresscode-modal" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeDressCodeModal()" aria-label="Cerrar">&times;</button>
+                <h2 class="modal-title-dark">Código de Vestimenta</h2>
+                <p class="modal-dress">Formal o Semi-formal</p>
+                <p class="modal-text-dark">Los colores <strong>dorado</strong> y <strong>rosado</strong> están reservados exclusivamente para las quinceañeras.</p>
+                <div class="dresscode-colors">
+                    <div class="color-swatch">
+                        <span class="color-dot color-dot-gold" title="No dorado"></span>
+                        <small>Dorado</small>
+                    </div>
+                    <div class="color-swatch">
+                        <span class="color-dot color-dot-pink" title="No rosado"></span>
+                        <small>Rosado</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Regalos -->
+        <div id="giftsModal" class="modal-overlay" onclick="closeGiftsModal()">
+            <div class="dresscode-modal gift-modal" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeGiftsModal()" aria-label="Cerrar">&times;</button>
+                <h2 class="modal-title-dark">Mesa de Regalos</h2>
+                <p class="modal-text-dark">Si deseas hacernos un regalo, puedes realizar una transferencia a la siguiente cuenta:</p>
+                <div class="account-card">
+                    <div class="account-row"><span>Banco</span><strong>Banco Popular</strong></div>
+                    <div class="account-row"><span>A nombre de</span><strong>Lenny Mora</strong></div>
+                    <div class="account-row account-number-row">
+                        <span>Número de cuenta</span>
+                        <div class="account-number-wrap">
+                            <strong id="accountNumber">776023806</strong>
+                            <button class="copy-btn" type="button" onclick="copyAccount()" aria-label="Copiar número de cuenta" title="Copiar">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M5 15V6a2 2 0 0 1 2-2h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                <span class="copy-label">Copiar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p class="gift-thanks">¡Gracias por tu cariño!</p>
+            </div>
+        </div>
+
+        <!-- Toast notification -->
+        <div id="toast" class="toast">
+            <div id="toastContent"></div>
+        </div>
+
+        <script>
+        (function() {
+            try {
+                if ('caches' in window) {
+                    caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(() => {});
+                }
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister())).catch(() => {});
+                }
+            } catch(e) {}
+        })();
+        </script>
+        <script src="JAVAB.js?v=34" defer></script>
+</body>
+</html>
